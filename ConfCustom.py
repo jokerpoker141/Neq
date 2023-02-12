@@ -28,20 +28,57 @@ class config :
         # Audio
         self.VoiceOverDir = self.config [ "Audio" ] [ "VoiceOverDir" ]
 
-        self.BackgroundMusicDir = self.config ["Audio"] [ "BackgroundMusicDir"]
-        self.BackgroundMusicFilePrefix = self.config ["Audio"] ["BackgroundMusicFilePrefix"]
-        self.BackgroundMusicCount = self.config ["Audio"] [ "BackgroundMusicCount" ]
+        self.BackgroundMusicDir = self.config [ "Audio" ] [ "BackgroundMusicDir" ]
+        self.BackgroundMusicFilePrefix = self.config [ "Audio" ] [ "BackgroundMusicFilePrefix" ]
+        self.BackgroundMusicCount = self.config [ "Audio" ] [ "BackgroundMusicCount" ]
         # Photo
         self.screenshotDir = self.config [ "Photo" ] [ "ScreenshotDir" ]
         # Reddit
         self.NumberOfPostsToSelectFrom = self.config [ "Reddit" ] [ "NumberOfPostsToSelectFrom" ]
 
+    def PRAW(self) :
+        config_ = cp.ConfigParser ()
+        config_.read ( 'Praw.ini' )
 
-    def Keys(self) :
+        conf = {
+            "check_for_updates" : config_ [ "DEFAULT" ] [ "check_for_updates" ],
+
+            # Object to kind mappings
+            "comment_kind " : config_ [ "DEFAULT" ] [ "comment_kind" ],
+            "message_kind" : config_ [ "DEFAULT" ] [ "message_kind" ],
+            "redditor_kind" : config_ [ "DEFAULT" ] [ "redditor_kind" ],
+            "submission_kind" : config_ [ "DEFAULT" ] [ "submission_kind" ],
+            "subreddit_kind" : config_ [ "DEFAULT" ] [ "subreddit_kind" ],
+            "trophy_kind" : config_ [ "DEFAULT" ] [ "trophy_kind" ],
+
+            # The URL prefix for OAuth-related requests.
+            "oauth_url" : config_ [ "DEFAULT" ] [ "oauth_url" ],
+
+            # The amount of seconds of ratelimit to sleep for upon encountering a specific type of 429 error.,
+            "ratelimit_seconds" : config_ [ "DEFAULT" ] [ "ratelimit_seconds" ],
+
+            # The URL prefix for regular requests.,
+            "reddit_url" : config_ [ "DEFAULT" ] [ "reddit_url" ],
+
+            # The URL prefix for short URLs.,
+            "short_url" : config_ [ "DEFAULT" ] [ "short_url" ],
+
+            # The timeout for requests to Reddit in number of seconds,
+            "timeout" : config_ [ "DEFAULT" ] [ "timeout" ],
+
+            "client_id" : "8JANU67KBfzaCTk5yUyboA",
+            "client_secret" : "J3Zvhni3fITS9Hh4M3wsESyqcfWwAQ",
+            "user_agent" : "Window10 :BotTestBruh: v0",
+            "user_agent" : "Window10:BotTestBruh:v0.1 by u/Fantastic_Snow_5130"
+        }
+        return conf
+
+    def __Keys(self) :
         return self.config.keys ()
 
-    def Pairs(self) :
+    def __Pairs(self) :
         return self.config.items ()
+    # PRAW
 
 
 if __name__ == '__main__' :
