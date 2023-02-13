@@ -1,9 +1,10 @@
-import markdown_to_text
 import os
-import praw
 import re
 import time
 
+import praw
+
+import markdown_to_text
 from ConfCustom import config
 from videoscript import VideoScript
 
@@ -21,17 +22,18 @@ def getContent(outputDir, postOptionCount) -> VideoScript :
     autoSelect = postOptionCount == 0
     posts = [ ]
 
-    for submission in reddit.subreddit ( "askreddit" ).top ( time_filter = "day", limit = postOptionCount * 3 ) :
-        if (f"{submission.id}.mp4" in existingPostIds or submission.over_18) :
+    for submission in reddit.subreddit ( "IllegalLifeProTips" ).top ( time_filter = "day",
+                                                                      limit = postOptionCount * 3 ) :
+        if f"{submission.id}.mp4" in existingPostIds or submission.over_18 :
             continue
         hoursAgoPosted = (now - submission.created_utc) / 3600
         print (
             f"[{len ( posts )}] {submission.title}     {submission.score}    {'{:.1f}'.format ( hoursAgoPosted )} hours ago" )
         posts.append ( submission )
-        if (autoSelect or len ( posts ) >= postOptionCount) :
+        if autoSelect or len ( posts ) >= postOptionCount :
             break
 
-    if (autoSelect) :
+    if autoSelect :
         return __getContentFromPost ( posts [ 0 ] )
     else :
         postSelection = int ( input () )
@@ -43,7 +45,7 @@ def getContentFromId(outputDir, submissionId) -> VideoScript :
     reddit = __getReddit ()
     existingPostIds = __getExistingPostIds ( outputDir )
 
-    if (submissionId in existingPostIds) :
+    if submissionId in existingPostIds :
         print ( "Video already exists!" )
         exit ()
     try :
@@ -56,7 +58,6 @@ def getContentFromId(outputDir, submissionId) -> VideoScript :
 
 def __getReddit() :
     settings = conf.PRAW ()
-    print ( settings )
     return praw.Reddit (
         client_id = settings [ "client_id" ],
         client_secret = settings [ "client_secret" ],
@@ -74,8 +75,12 @@ def __getContentFromPost(submission) -> VideoScript :
 
     failedAttempts = 0
     for comment in submission.comments :
+        if comment.author == "AutoModerator" :
+            continue
         if content.addCommentScene ( markdown_to_text.markdown_to_text ( comment.body ), comment.id ) :
             failedAttempts += 1
+            if comment.author == "AutoModerator" :
+                continue
         if content.canQuickFinish () or (failedAttempts > 2 and content.canBeFinished ()) :
             break
     return content

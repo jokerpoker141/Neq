@@ -1,21 +1,21 @@
 import configparser
+import random
+import subprocess
+import time
 
 from moviepy.audio.fx.volumex import volumex
 from moviepy.editor import *
-import random
+
+import ConfCustom
 import reddit
 import screenshot
-import subprocess
-import sys
-import time
-import ConfCustom
 
 # TODO : automatically crop and cut RAW videos for shorts
 # TODO : DONE : add background music to the video
 # TODO : Add Subscribe to the end of the video
 # TODO : Add auto tags
 # TODO : Change the video name to the specified video name
-
+# TODO : sound optimizations
 conf = ConfCustom.config ()
 
 
@@ -38,6 +38,7 @@ def createVideo() :
     else :
         postOptionCount = int ( config [ "Reddit" ] [ "NumberOfPostsToSelectFrom" ] )
         script = reddit.getContent ( outputDir, postOptionCount )
+
     fileName = script.getFileName ()
 
     # Create screenshots
@@ -54,7 +55,7 @@ def createVideo() :
     #  Ensures that the background directory exists
     while bgIndex < 0 or bgIndex >= bgCount :
         bgIndex = random.randint ( 0, bgCount - 1 )
-    try:
+    try :
         backgroundVideo = VideoFileClip (
             filename = f"{bgDir}/{bgPrefix}{bgIndex}.mp4",
             audio = True ).subclip ( 0, script.getDuration () )
@@ -84,7 +85,7 @@ def createVideo() :
         clips.append ( __createClip ( comment.screenShotFile, comment.audioClip, marginSize ) )
 
     # intro
-    intro = VideoFileClip("Misc/neq opening.mov")
+    intro = VideoFileClip ( "Misc/neq opening.mov" )
 
     # Merge clips into single track
     contentOverlay = concatenate_videoclips ( clips ).set_position ( ("center", "center") )
@@ -92,8 +93,9 @@ def createVideo() :
     # Background Music
     BackgroundMusicFolder = conf.BackgroundMusicDir
     BackgroundMusicName = f"{BackgroundMusicFolder}/{files [ random.randint ( 0, len ( files ) - 1 ) ]}"
+    # files is a  list that is containing all background music
     BackgroundMusic = AudioFileClip ( filename = BackgroundMusicName )
-    BackgroundMusic = volumex ( BackgroundMusic, 0.25 )
+    BackgroundMusic = volumex ( BackgroundMusic, 0.20 )
 
     BackgroundAudio = CompositeAudioClip ( [ BackgroundMusic, contentOverlay.audio ] )
 
@@ -104,7 +106,10 @@ def createVideo() :
     final.duration = script.getDuration ()
     final.set_fps ( backgroundVideo.fps )
     finalDuration = final.subclip ( 0, script.getDuration () )
-    tempList : list = [intro, finalDuration ] # if you want to add something to the end in the future use this  #important!
+
+    # if you want to add something to the end in the future use this  #important!
+    tempList: list = [ intro, finalDuration ]
+
     finalConcat = concatenate_videoclips ( tempList )
 
     # Write output to file

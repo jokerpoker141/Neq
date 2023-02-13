@@ -1,5 +1,7 @@
 from datetime import datetime
+
 from moviepy.editor import AudioFileClip
+
 import voiceover
 
 MAX_WORDS_PER_COMMENT = 100
@@ -45,7 +47,10 @@ class VideoScript :
     def getFileName(self) :
         return self.fileName
 
-    def __createVoiceOver(self, name, text, VoiceType=0 , RuntimeChanges=1) :
+    def getTitle(self) :
+        return self.title
+
+    def __createVoiceOver(self, name, text, VoiceType=0, RuntimeChanges=1) :
         # Voice type is a var for the Create_Voice_Over function
         # that determines if the speaker is going to be male or female
 
@@ -53,20 +58,20 @@ class VideoScript :
 
         # TODO : Add automation settings for RuntimeChanges
 
-        if RuntimeChanges:
-            VoiceType = input("Voice Type: \n0 - Female \n1 - Male \n\n\n")
-            try:
-                VoiceType = int(VoiceType)
-                if not ((VoiceType == 0 ) or (VoiceType == 1))  :
-                    print("Please enter 0 or 1")
+        if RuntimeChanges :
+            VoiceType = input ( "Voice Type: \n0 - Female \n1 - Male \n\n\n" )
+            try :
+                VoiceType = int ( VoiceType )
+                if not ((VoiceType == 0) or (VoiceType == 1)) :
+                    print ( "Please enter 0 or 1" )
                     raise IndexError
-            except ValueError:
-                print("please enter a number")
+            except ValueError :
+                print ( "please enter a number" )
 
-        file_path = voiceover.create_voice_over ( f"{self.fileName}-{name}", text, VoiceType)
+        file_path = voiceover.create_voice_over ( f"{self.fileName}-{name}", text, VoiceType )
         audioClip = AudioFileClip ( file_path )
         if self.totalDuration + audioClip.duration > MAX_DURATION :
-            print("Too high")
+            print ( "Too high" )
             return None
         self.totalDuration += audioClip.duration
         self.totalDuration

@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a684e1d-914e-4dee-b2b8-422c8b9861b1" name="Changes" comment="">
+    <list default="true" id="5a684e1d-914e-4dee-b2b8-422c8b9861b1" name="Changes" comment="fixed credicential errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfCustom.py" beforeDir="false" afterPath="$PROJECT_DIR$/ConfCustom.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reddit.py" beforeDir="false" afterPath="$PROJECT_DIR$/reddit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/videoscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/videoscript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/voiceover.py" beforeDir="false" afterPath="$PROJECT_DIR$/voiceover.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +49,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/bruh/PycharmProjects/RedditVideoGenerator/Gifs&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -62,7 +63,7 @@
       <recent name="C:\Users\bruh\PycharmProjects\RedditVideoGenerator" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.reddit">
+  <component name="RunManager" selected="Python.main">
     <configuration name="ConfCustom" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RedditVideoGenerator" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -191,8 +192,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.reddit" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.reddit" />
         <item itemvalue="Python.redditTest" />
         <item itemvalue="Python.VideoSplitter" />
         <item itemvalue="Python.voiceover" />
@@ -208,6 +209,14 @@
       <option name="presentableId" value="Default" />
       <updated>1675929287478</updated>
     </task>
+    <task id="LOCAL-00001" summary="fixed credicential errors">
+      <created>1676237816224</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676237816224</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,6 +234,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="fixed credicential errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed credicential errors" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

@@ -2,6 +2,7 @@ import pyttsx3
 
 from ConfCustom import config
 
+# TODO : Custom voices
 conf = config ()
 
 voiceoverDir = conf.VoiceOverDir
