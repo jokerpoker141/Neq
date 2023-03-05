@@ -51,16 +51,16 @@ class config :
             "subreddit_kind" : config_ [ "DEFAULT" ] [ "subreddit_kind" ],
             "trophy_kind" : config_ [ "DEFAULT" ] [ "trophy_kind" ],
 
-            # The URL prefix for OAuth-related requests.
+            # The URL_general prefix for OAuth-related requests.
             "oauth_url" : config_ [ "DEFAULT" ] [ "oauth_url" ],
 
             # The amount of seconds of ratelimit to sleep for upon encountering a specific type of 429 error.,
             "ratelimit_seconds" : config_ [ "DEFAULT" ] [ "ratelimit_seconds" ],
 
-            # The URL prefix for regular requests.,
+            # The URL_general prefix for regular requests.,
             "reddit_url" : config_ [ "DEFAULT" ] [ "reddit_url" ],
 
-            # The URL prefix for short URLs.,
+            # The URL_general prefix for short URLs.,
             "short_url" : config_ [ "DEFAULT" ] [ "short_url" ],
 
             # The timeout for requests to Reddit in number of seconds,
@@ -68,7 +68,7 @@ class config :
 
             "client_id" : "8JANU67KBfzaCTk5yUyboA",
             "client_secret" : "J3Zvhni3fITS9Hh4M3wsESyqcfWwAQ",
-            "user_agent" : "Window10 :BotTestBruh: v0",
+            # "user_agent" : "Window10 :BotTestBruh: v0",
             "user_agent" : "Window10:BotTestBruh:v0.1 by u/Fantastic_Snow_5130"
         }
         return conf
@@ -78,7 +78,6 @@ class config :
 
     def __Pairs(self) :
         return self.config.items ()
-    # PRAW
 
 
 if __name__ == '__main__' :
